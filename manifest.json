@@ -1,0 +1,26 @@
+{
+    "name": "Bee Productive",
+    "description": "Bee Productive, a chrome extension with numerous features to keep the user productive while studying.",
+    "author": "Abhash Shrestha, Caitlin Odom, Ethan Tran, Rijan Timsina",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "src/js/service_worker.js"
+    },
+    "permissions": [ ], 
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/icons/get_started16.png",
+            "32": "/images/icons/get_started32.png",
+            "48": "/images/icons/get_started48.png",
+            "128": "/images/icons/get_started128.png"
+          }
+    },
+    "icons": {
+        "16": "/images/icons/get_started16.png",
+        "32": "/images/icons/get_started32.png",
+        "48": "/images/icons/get_started48.png",
+        "128": "/images/icons/get_started128.png"
+      }
+}
