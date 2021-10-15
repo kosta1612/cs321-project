@@ -7,7 +7,7 @@
     "background": {
         "service_worker": "src/js/service_worker.js"
     },
-    "permissions": ["storage", "bookmarks" ], 
+    "permissions": ["activeTab", "declarativeContent", "tabs", "storage"], 
     "action": {
         "default_popup": "src/html/popup.html",
         "default_icon": "images/icons/bee.png"
