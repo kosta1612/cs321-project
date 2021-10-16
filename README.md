@@ -18,4 +18,6 @@ Bee Productive is a chrome extension that has a number of features to keep the u
 
 ### Feature Preview
 
-- [Blacklist Monitor](https://youtu.be/vqzp93tElJ4)
+
+![Blacklist Monitoring Prewview GIF](images/blacklist.gif)
+- [Extended version of the gif above](https://youtu.be/vqzp93tElJ4)
