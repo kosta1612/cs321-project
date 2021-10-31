@@ -11,6 +11,7 @@
 			crossorigin="anonymous"
 		/>
 		<script src="../js/service_worker.js"></script>
+		<script src="../js/popup.js"></script>
 	</head>
 	<body class="w3-amber">
 		<!-- page title -->
@@ -21,13 +22,42 @@
 					alt="Bee"
 					style="width: 50px; height: 50px"
 				/>
-				<h1 class="">Bee Productive</h1>
+				<h1>Bee Productive</h1>
 					<p>Bee productive lets users blacklist any unproductive
 						sites, set a custom Pomodoro timer and provides a simple visual aid of bees building a
 						hive that grows as the timer runs out.</p>
 			</div>
 		</header>
-		<!-- nav buttons -->
+		<!-- Pomodoro Timer -->
+		<div class="w3-container w3-center">
+			<div>
+				<!-- <form> -->
+					<div class="">
+						Study time:
+							<input id="study-min" type="number"/>
+							<button id="set_study_min" class="w3-button w3-green">Set Study Time</button>
+					</div>
+
+					<div class="">
+						Break time:
+							<input id="break-min" type="number"/>
+							<button id="set_break_min" class="w3-button w3-green">Set Break Time</button>
+					</div>
+				<!-- </form> -->
+			</div>
+			<div id="clock"  class="w3-center">
+				<!-- once the start is pressed, the countdown will start here -->
+			</div>
+			<div class="">
+				<p class="">Timer: </p>
+				<button id="start" class="w3-button w3-green w3-left">Start</button>
+				<button id="stop" class="w3-button w3-red w3-right">Stop</button>
+			</div>
+	
+		</div>
+
+
+		<!-- Blacklist -->
 		<div class="w3-container">
 			<h5 class="w3-center">
 				Current List of Blacklisted Websites:
@@ -38,8 +68,8 @@
 		</div>
 
 		<div class="w3-container w3-center" id="test">
-			<div>Blacklist url: <input id="blacklist_url" /></div>
-			<button id="add" class="w3-button w3-black">
+			<div class="">Blacklist url: <input id="blacklist_url" /></div>
+			<button id="add" class="w3-button w3-green">
 				Add
 			</button>
 			<button id="remove" class="w3-button w3-red">
