@@ -16,6 +16,11 @@ Bee Productive is a chrome extension that has a number of features to keep the u
 1. Enable Developer Mode by clicking the toggle switch next to ```Developer mode```.
 1. Click the ```Load unpacked``` button.
 
+## How to use the extension
+- Right click on the extension on the top right corner next to the addressbar and click on Inspect Popup. **NOTE:** This needs to open for the extension to workproperly. 
+- For the timer to work properly, you need to enter the time in minutes and click the corresponding ```Set Time``` button.
+- Click the ```Start Timer``` button to start the timer.
+- During this time, while the extension window is still visible, if you visit a blacklisted site, you will get an alert.
 ### Feature Preview
 
 ![Blacklist Monitoring Prewview GIF](images/blacklist.gif)
