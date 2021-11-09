@@ -5,7 +5,6 @@
     "version": "0.0.1",
     "manifest_version": 3,
     "background": {
-        "service_worker": "src/js/service_worker.js",
         "popup": "src/js/popup.js"
     },
     "permissions": [

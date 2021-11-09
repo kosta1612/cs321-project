@@ -29,14 +29,30 @@ function displayCurrentList(){
     document.querySelector("#current_list_blacklisted").innerHTML = s;
 }
 
+function addBee(){
+    document.querySelector("#visual").innerHTML = "<div class=\"wrapper\"><div class=\"bee\"><div class=\"bee-body\"><div class=\"blink\"></div><div class=\"mouth\"></div><div class=\"antenae\"></div><div class=\"bee-left\"></div><div class=\"bee-right\"></div></div></div><div class=\"shadow\"></div></div>";
+}
+
 function timer(minutes) {
     var seconds = 60;
     var mins = minutes;
+    var counter = document.querySelector("#clock");
+    var current_minutes = mins-1;
     function tick() {
-        var counter = document.querySelector("#clock");
-        var current_minutes = mins-1;
+        // var counter = document.querySelector("#clock");
+        // var visual = document.querySelector("#visual");
+        // var current_minutes = mins-1;
         seconds--;
+        console.log("minutes: " + current_minutes);
+        console.log("seconds: " + seconds);
         counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+        addBee();
+        // if minites = 0 and seconds = 0 then stop
+        if(current_minutes == 0 && seconds == 0){
+            console.log("Gets here");
+            document.querySelector("#visual").innerHTML = "";
+            return;
+        }
         if( seconds > 0 ) {
             setTimeout(tick, 1000);
         } else {
@@ -47,9 +63,9 @@ function timer(minutes) {
         }
     }
     document.querySelector("#stop").addEventListener("click", function(){
-        // stop does not work atm
         console.log("stop");
-        return;
+        counter.innerHTML = "Timer Stopped";
+        document.querySelector("#visual").innerHTML = "";
     });
 
     chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
