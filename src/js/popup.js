@@ -1,4 +1,4 @@
-const blacklistedUrls = [
+var blacklistedUrls = [
     "facebook.com",
     "youtube.com",
     "reddit.com",
@@ -7,6 +7,8 @@ const blacklistedUrls = [
     "netflix.com",
     "hulu.com",    
 ];
+var blacklistVisitCounter = 0;
+var stop = false;
     
 function alertUser(){
     alert("You cannot visit this website");
@@ -29,8 +31,12 @@ function displayCurrentList(){
     document.querySelector("#current_list_blacklisted").innerHTML = s;
 }
 
-function addBee(){
-    document.querySelector("#visual").innerHTML = "<div class=\"wrapper\"><div class=\"bee\"><div class=\"bee-body\"><div class=\"blink\"></div><div class=\"mouth\"></div><div class=\"antenae\"></div><div class=\"bee-left\"></div><div class=\"bee-right\"></div></div></div><div class=\"shadow\"></div></div>";
+function addGreenBee(){
+    document.querySelector("#visual").innerHTML = "<div class=\"wrapper w3-green\"><div class=\"bee\"><div class=\"bee-body\"><div class=\"blink\"></div><div class=\"mouth\"></div><div class=\"antenae\"></div><div class=\"bee-left\"></div><div class=\"bee-right\"></div></div></div></div>";
+}
+
+function addRedBee(){
+    document.querySelector("#visual").innerHTML = "<div class=\"wrapper w3-red\"><div class=\"bee\"><div class=\"bee-body\"><div class=\"blink\"></div><div class=\"mouth\"></div><div class=\"antenae\"></div><div class=\"bee-left\"></div><div class=\"bee-right\"></div></div></div></div>";
 }
 
 function timer(minutes) {
@@ -38,19 +44,31 @@ function timer(minutes) {
     var mins = minutes;
     var counter = document.querySelector("#clock");
     var current_minutes = mins-1;
+    if(stop == true){
+        // counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+        document.querySelector("#visual").innerHTML = " ";
+    }
+    else{
+       addGreenBee();
+    }
+    // addGreenBee();
     function tick() {
-        // var counter = document.querySelector("#clock");
-        // var visual = document.querySelector("#visual");
-        // var current_minutes = mins-1;
         seconds--;
         console.log("minutes: " + current_minutes);
         console.log("seconds: " + seconds);
-        counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        addBee();
+        console.log("stop: " + stop);
+        if(stop != true){
+            // counter.innerHTML = "Blacklist Visits: " + blacklistVisitCounter;
+            counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+        }
+        else{
+            counter.innerHTML = "Timer Stopped";
+        }
+        // addGreenBee();
         // if minites = 0 and seconds = 0 then stop
         if(current_minutes == 0 && seconds == 0){
             console.log("Gets here");
-            document.querySelector("#visual").innerHTML = "";
+            document.querySelector("#visual").innerHTML = "Blacklisted Sites Visited: "  + blacklistVisitCounter;
             return;
         }
         if( seconds > 0 ) {
@@ -65,7 +83,10 @@ function timer(minutes) {
     document.querySelector("#stop").addEventListener("click", function(){
         console.log("stop");
         counter.innerHTML = "Timer Stopped";
-        document.querySelector("#visual").innerHTML = "";
+        // document.querySelector("#visual").innerHTML = "";
+        document.querySelector("#visual").innerHTML = "Blacklisted Sites Visited: "  + blacklistVisitCounter;
+        stop = true;
+        return;
     });
 
     chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -74,12 +95,14 @@ function timer(minutes) {
                 for (var i = 0; i < blacklistedUrls.length; i++) {
                     if (tab.url.includes(blacklistedUrls[i])) {
                         alertUser();
+                        addRedBee();
+                        blacklistVisitCounter++;
+                        console.log("Blacklisted Sites Visited: "  + blacklistVisitCounter);
                         break;
-                    }   
+                    }  
                 }
             }
         });
-
     tick();
 }
 
@@ -109,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector("#start").addEventListener("click", function(){
         // console.log("start");
         startStudyTimer(study_min);
+        stop = false;
     });
 
     // add to the blacklisted urls

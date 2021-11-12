@@ -314,3 +314,34 @@
     height: 110px;
  }
 }
+
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 612px;
+}
+  
+.row:nth-Child(odd) {
+  position: relative;
+  margin-left: 76.5px;
+  margin-bottom: -38px;
+}
+.row:nth-Child(even) {
+  margin-bottom: -38px;
+}
+.test-shape {
+  display: inline-block;
+  box-shadow: 10px 10px 5px #000;
+  width: 150px; 
+  height: 150px;
+  background: grey;
+  /* -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
+  transition: .7s;
+}
+.test-shape:hover {
+  background: red;
+  transform: rotateY(-180deg);
+  transition: .7s;
+}
