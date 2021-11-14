@@ -31,12 +31,8 @@ function displayCurrentList(){
     document.querySelector("#current_list_blacklisted").innerHTML = s;
 }
 
-function addGreenBee(){
-    document.querySelector("#visual").innerHTML = "<div class=\"wrapper w3-green\"><div class=\"bee\"><div class=\"bee-body\"><div class=\"blink\"></div><div class=\"mouth\"></div><div class=\"antenae\"></div><div class=\"bee-left\"></div><div class=\"bee-right\"></div></div></div></div>";
-}
-
-function addRedBee(){
-    document.querySelector("#visual").innerHTML = "<div class=\"wrapper w3-red\"><div class=\"bee\"><div class=\"bee-body\"><div class=\"blink\"></div><div class=\"mouth\"></div><div class=\"antenae\"></div><div class=\"bee-left\"></div><div class=\"bee-right\"></div></div></div></div>";
+function addBee(color){ // color is a string that is either "green" or "red"
+    document.querySelector("#visual").innerHTML = "<div class=\"wrapper " + color + "\"><div class=\"bee\"><div class=\"bee-body\"><div class=\"blink\"></div><div class=\"mouth\"></div><div class=\"antenae\"></div><div class=\"bee-left\"></div><div class=\"bee-right\"></div></div></div></div>";
 }
 
 function timer(minutes) {
@@ -49,7 +45,8 @@ function timer(minutes) {
         document.querySelector("#visual").innerHTML = " ";
     }
     else{
-       addGreenBee();
+    //    addGreenBee();
+    addBee("w3-green");
     }
     // addGreenBee();
     function tick() {
@@ -95,7 +92,8 @@ function timer(minutes) {
                 for (var i = 0; i < blacklistedUrls.length; i++) {
                     if (tab.url.includes(blacklistedUrls[i])) {
                         alertUser();
-                        addRedBee();
+                        // addRedBee();
+                        addBee("w3-red");
                         blacklistVisitCounter++;
                         console.log("Blacklisted Sites Visited: "  + blacklistVisitCounter);
                         break;
